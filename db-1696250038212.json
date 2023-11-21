@@ -1,0 +1,16 @@
+{
+  "cities": [
+    {
+      "cityName": "Shibin al Kawm",
+      "country": "Egypt",
+      "emoji": "🇪🇬",
+      "date": "2023-09-30T11:24:38.746Z",
+      "notes": "",
+      "position": {
+        "lat": "30.56153436526031",
+        "lng": "31.014404296875004"
+      },
+      "id": 2
+    }
+  ]
+}

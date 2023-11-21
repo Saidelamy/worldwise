@@ -14,14 +14,14 @@ import SpinnerFullPage from "./componants/SpinnerFullPage";
 // import Product from "./pages/Product";
 // import Pricing from "./pages/Pricing";
 // import Homepage from "./pages/Homepage";
-// import Pagenotfound from "./pages/Pagenotfound";
+// import PageNotFound from "./pages/PageNotFound";
 // import Login from "./pages/Login";
 // import AppLayout from "./pages/AppLayout";
 
 const Pricing = lazy(() => import("./pages/Pricing"));
 const Product = lazy(() => import("./pages/Product"));
 const Homepage = lazy(() => import("./pages/Homepage"));
-const Pagenotfound = lazy(() => import("./pages/Pagenotfound"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 const Login = lazy(() => import("./pages/Login"));
 const AppLayout = lazy(() => import("./pages/AppLayout"));
 
@@ -54,7 +54,7 @@ function App() {
                 <Route path="countries" element={<CountryList />} />
                 <Route path="form" element={<Form />} />
               </Route>
-              <Route path="*" element={<Pagenotfound />} />
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
           </Suspense>
         </BrowserRouter>

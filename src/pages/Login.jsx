@@ -10,7 +10,7 @@ import { useAuth } from "../contexts/FakeAuthContext.jsx";
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
   const [email, setEmail] = useState("said@example.com");
-  const [password, setPassword] = useState("qwerty");
+  const [password, setPassword] = useState("said");
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 

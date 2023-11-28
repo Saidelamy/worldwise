@@ -1,38 +1,31 @@
-import { Suspense, lazy } from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import { CitiesContext } from "./contexts/CitiesContext";
-import { AuthProvider } from "./contexts/FakeAuthContext";
-import ProtectedRoute from "./pages/ProtectedRoute";
+import ProtectedRoute from "./pages/ProtectedRoute.jsx";
+import AppLayout from "./pages/AppLayout.jsx";
+import CityList from "./components/CityList.jsx";
+import CountryList from "./components/CountryList.jsx";
+import City from "./components/City.jsx";
+import Form from "./components/Form.jsx";
+import SpinnerFullPage from "./components/SpinnerFullPage.jsx";
 
-import CityList from "./componants/CityList";
-import CountryList from "./componants/CountryList";
-import City from "./componants/City";
-import Form from "./componants/Form";
-import SpinnerFullPage from "./componants/SpinnerFullPage";
+import { AuthProvider } from "./contexts/FakeAuthContext.jsx";
+import { LocalCitiesProvider } from "./contexts/LocalCitiesContext.jsx";
 
-// import Product from "./pages/Product";
-// import Pricing from "./pages/Pricing";
-// import Homepage from "./pages/Homepage";
-// import PageNotFound from "./pages/PageNotFound";
-// import Login from "./pages/Login";
-// import AppLayout from "./pages/AppLayout";
-
-const Pricing = lazy(() => import("./pages/Pricing"));
-const Product = lazy(() => import("./pages/Product"));
-const Homepage = lazy(() => import("./pages/Homepage"));
-const PageNotFound = lazy(() => import("./pages/PageNotFound"));
-const Login = lazy(() => import("./pages/Login"));
-const AppLayout = lazy(() => import("./pages/AppLayout"));
+const Homepage = lazy(() => import("./pages/Homepage.jsx"));
+const Product = lazy(() => import("./pages/Product.jsx"));
+const Pricing = lazy(() => import("./pages/Pricing.jsx"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound.jsx"));
+const Login = lazy(() => import("./pages/Login.jsx"));
 
 function App() {
   return (
     <AuthProvider>
-      <CitiesContext>
+      <LocalCitiesProvider>
         <BrowserRouter>
           <Suspense fallback={<SpinnerFullPage />}>
             <Routes>
-              <Route path="/" element={<Homepage />} />
+              <Route index element={<Homepage />} />
               <Route path="product" element={<Product />} />
               <Route path="pricing" element={<Pricing />} />
               <Route path="login" element={<Login />} />
@@ -44,11 +37,7 @@ function App() {
                   </ProtectedRoute>
                 }
               >
-                <Route
-                  index
-                  // element={<CityList cities={cities} isLoading={isLoading} />}
-                  element={<Navigate replace to="cities" />}
-                />
+                <Route index element={<Navigate replace to="cities" />} />
                 <Route path="cities" element={<CityList />} />
                 <Route path="cities/:id" element={<City />} />
                 <Route path="countries" element={<CountryList />} />
@@ -58,7 +47,7 @@ function App() {
             </Routes>
           </Suspense>
         </BrowserRouter>
-      </CitiesContext>
+      </LocalCitiesProvider>
     </AuthProvider>
   );
 }

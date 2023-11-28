@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import styles from "./Homepage.module.css";
-import PageNav from "./../componants/PageNav";
+import { Link } from "react-router-dom";
+import PageNav from "../components/PageNav.jsx";
 
 export default function Homepage() {
   return (
@@ -18,7 +18,7 @@ export default function Homepage() {
           you have wandered the world.
         </h2>
         <Link to="/login" className="cta">
-          Start traking now
+          Start tracking now
         </Link>
       </section>
     </main>

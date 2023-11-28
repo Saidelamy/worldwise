@@ -1,11 +1,7 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { toast } from "react-toastify";
 
-const FAKE_USER = {
-  name: "said",
-  email: "said@example.com",
-  password: "qwerty",
-  avatar: "https://i.pravatar.cc/100?u=zz",
-};
+const AuthContext = createContext();
 
 const initialState = {
   user: null,
@@ -19,25 +15,44 @@ function reducer(state, action) {
     case "logout":
       return { ...state, user: null, isAuthenticated: false };
     default:
-      throw new Error("faild in authentication data");
+      throw new Error("Unknown action");
   }
 }
+const FAKE_USER = {
+  name: "said",
+  email: "said@example.com",
+  password: "qwerty",
+  avatar: "https://i.pravatar.cc/100?u=zz",
+};
 
-const AuthContext = createContext();
-
-// main function
 function AuthProvider({ children }) {
   const [{ user, isAuthenticated }, dispatch] = useReducer(
     reducer,
     initialState
   );
+
+  useEffect(function () {
+    const storedAuthState = localStorage.getItem("user");
+    if (storedAuthState) {
+      const parsedAuthState = JSON.parse(storedAuthState);
+      dispatch({ type: "login", payload: parsedAuthState.user });
+    }
+  }, []);
+
   function login(email, password) {
-    if (email === FAKE_USER.email && password === FAKE_USER.password)
+    if (email === FAKE_USER.email && password === FAKE_USER.password) {
+      const user = FAKE_USER;
+      localStorage.setItem("user", JSON.stringify({ user }));
       dispatch({ type: "login", payload: FAKE_USER });
+    }
+    toast.success("user login successfully");
   }
+
   function logout() {
+    localStorage.removeItem("user");
     dispatch({ type: "logout" });
   }
+
   return (
     <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
       {children}
@@ -47,8 +62,9 @@ function AuthProvider({ children }) {
 
 function useAuth() {
   const context = useContext(AuthContext);
-  if (context === undefined)
-    throw new Error("the context auth in out of context scope");
+  if (context === undefined) {
+    throw new Error("AuthContext was used outside AuthProvider");
+  }
   return context;
 }
 

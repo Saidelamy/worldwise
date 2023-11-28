@@ -1,5 +1,5 @@
-import PageNav from "../componants/PageNav";
 import styles from "./Product.module.css";
+import PageNav from "../components/PageNav.jsx";
 
 export default function Product() {
   return (
@@ -7,21 +7,21 @@ export default function Product() {
       <PageNav />
       <section>
         <img
-          src="img-1.jpg"
+          src="img-1.webp"
           alt="person with dog overlooking mountain with sunset"
         />
         <div>
           <h2>About WorldWide.</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo est
-            dicta illum vero culpa cum quaerat architecto sapiente eius non
-            soluta, molestiae nihil laborum, placeat debitis, laboriosam at fuga
-            perspiciatis?
+            At WorldWise, we are passionate about exploring the world and
+            creating lasting memories. Our journey began with a simple idea: to
+            help travelers like you connect with the places you visit and the
+            experiences you have.
           </p>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis
-            doloribus libero sunt expedita ratione iusto, magni, id sapiente
-            sequi officiis et.
+            Join us on this incredible journey as we inspire wanderlust, foster
+            a global community of adventurers, and encourage you to explore the
+            world like never before.
           </p>
         </div>
       </section>

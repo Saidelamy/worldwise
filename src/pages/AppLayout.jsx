@@ -1,13 +1,12 @@
-import Sidebar from "./../componants/Sidebar";
+import Map from "../components/Map.jsx";
 import styles from "./AppLayout.module.css";
-import Map from "./../componants/Map";
-import User from "../componants/User";
+import User from "../components/User.jsx";
+
 function AppLayout() {
   return (
     <div className={styles.app}>
-      <User />
-      <Sidebar />
       <Map />
+      <User />
     </div>
   );
 }

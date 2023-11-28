@@ -44,8 +44,10 @@ function AuthProvider({ children }) {
       const user = FAKE_USER;
       localStorage.setItem("user", JSON.stringify({ user }));
       dispatch({ type: "login", payload: FAKE_USER });
+      toast.success("user login successfully");
+    } else if (email !== FAKE_USER.email || password !== FAKE_USER.password) {
+      toast.error("email or password is invalid");
     }
-    toast.success("user login successfully");
   }
 
   function logout() {
